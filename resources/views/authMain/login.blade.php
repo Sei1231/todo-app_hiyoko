@@ -1,10 +1,18 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+  html, body {
+      overflow: hidden;
+      height: 100%;
+  }
+</style>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <div class="min-h-screen flex items-center justify-center">
+        {{-- <div class="min-h-screen flex items-center justify-center">
+           --}}
+           {{-- <div class="h-screen overflow-hidden flex items-center justify-center"> --}}
         <div class="container">
             <!-- ログインフォーム -->
             <div class="form-section">
@@ -56,7 +64,7 @@
             </div>
 
             <!-- 新規登録フォーム -->
-            <div class="form-section" style="background-color: #f9e71d;">
+            <div class="form-section" style="background-color: #facc15;">
                 <h2 style="font-size: 2rem;">REGISTER</h2>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
