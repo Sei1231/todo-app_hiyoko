@@ -28,6 +28,9 @@ Route::get('/loginMain', function () {
 Route::get('/tasklistMain', function () {
     return view('authMain.tasklist');
 });
+Route::get('/createMain', function () {
+    return view('authMain.create');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
