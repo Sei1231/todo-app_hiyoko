@@ -9,13 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('tasks', function (Blueprint $table) {
+        $table->id();
+        $table->string('title');
+        $table->date('time');           // 期限
+        $table->date('done_at')->nullable(); // 完了日時（null = 未完了）
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
