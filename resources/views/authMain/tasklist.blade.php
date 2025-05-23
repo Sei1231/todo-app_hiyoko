@@ -1,297 +1,272 @@
 @extends('layouts.app')
 @section('content')
-<style>
-    /* 全体はflexで横並び */
-    .container {
-        display: flex;
-        height: calc(100vh - 60px); /* ヘッダーの高さ分を引く */
-        margin-top: 60px; /* ヘッダーの高さ分だけ下げる */
-        left: 120px
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
     }
 
-    /* サイドバー */
+    .container {
+        display: flex;
+        height: calc(100vh - 60px);
+        margin-top: 60px;
+    }
+
     .sidebar {
         width: 250px;
-        background-color: #facc15; /* 黄色基調 */
-        color: #6b4226; /* 茶色っぽい文字色 */
+        background-color: #facc15;
+        color: #6b4226;
         padding: 20px;
         position: fixed;
-        top: 100px; /* ヘッダーの下から開始 */
+        top: 100px;
         left: 0;
         bottom: 20px;
         overflow-y: auto;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
-    /* メインコンテンツ */
     .main-content {
         margin-left: 250px;
-        padding: 20px;
+        padding: 30px 60px;
         flex: 1;
         overflow-y: auto;
         height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        scrollbar-width: none;
     }
 
-    /* 右下のプラスボタンは固定配置 */
+    .main-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .main-content::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+    }
+
     .add-todo {
         position: fixed;
         bottom: 20px;
         right: 20px;
     }
 
-    /* 見出しの色調整 */
     .section-title {
         font-weight: bold;
-        margin: 25px 0px 10px 0px;
+        margin: 25px 0 10px;
         color: #6b4226;
     }
 
-    /* ボタンのスタイル調整 */
-    .template1-button {
-        background-color: #ffffff;
-        color: rgb(0, 0, 0);
-        border: none;
+    .template1-button,
+    .template2-button,
+    .today-button,
+    .study-button,
+    .family-button,
+    .school-button,
+    .work-button,
+    .others-button {
+        width: 210px;
         padding: 8px 12px;
         margin: 5px 0;
         border-radius: 4px;
         cursor: pointer;
-        width: 210px;
-        border: 2px solid #ffffff;
+        border: 2px solid transparent;
     }
+
+    .template1-button {
+        background-color: #fff;
+        color: #000;
+        border-color: #fff;
+    }
+
     .template2-button {
         background-color: #ff0000;
-        color: rgb(0, 0, 0);
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid #ff0000;
+        color: #000;
+        border-color: #ff0000;
     }
+
+    .template1-button:hover {
+        border-color: #000;
+    }
+
+    .template2-button:hover,
+    .today-button:hover,
+    .study-button:hover,
+    .family-button:hover,
+    .school-button:hover,
+    .work-button:hover,
+    .others-button:hover {
+        border-color: white;
+    }
+
+    .today-button { background-color: #17d239; color: white; }
+    .study-button { background-color: #f5156f; color: white; }
+    .family-button { background-color: #113ceb; color: white; }
+    .school-button { background-color: #f77d1a; color: white; }
+    .work-button { background-color: #b42ed9; color: white; }
+    .others-button { background-color: #000; color: white; }
 
     .add-button {
         background-color: #6b4226;
         color: white;
         border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
+        padding: 10px 16px;
+        border-radius: 50%;
+        font-size: 24px;
         cursor: pointer;
     }
 
-    .template2-button:hover, .today-button:hover, .school-button:hover, .study-button:hover, .family-button:hover, .others-button:hover, .work-button:hover {
-        /* background-color: #a15a1b; */
-        border: 2px solid white;
-    }
-
-    .template1-button:hover {
-        border: 2px solid rgb(0, 0, 0);
-    }
-
-
-    .work-button {
-        background-color: #b42ed9;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid #b42ed9;
-    }
-    .family-button {
-        background-color: #113ceb;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid #113ceb;
-    }
-    .others-button {
-        background-color: #000000;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid rgb(0, 0, 0);
-    }
-    .school-button {
-        background-color: #f77d1a;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid #f77d1a;
-    }
-    .study-button {
-        background-color: #f5156f;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid #f5156f;
-    }
-    .today-button {
-        background-color: #17d239;
-        color: white;
-        border: none;
-        padding: 8px 12px;
-        margin: 5px 0;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 210px;
-        border: 2px solid #17d239;
-    }
     .todo-list {
-    display: flex;
-    gap: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
 
-.todo-wrapper {
-    display: flex;
-    align-items: center;
-}
+    .todo-checkbox {
+        transform: scale(1.2);
+        /* margin-top: 6px; */
+        cursor: pointer;
+    }
 
-.todo-checkbox {
-    margin-right: 10px;
-    transform: scale(1.3);
-    cursor: pointer;
-}
+    .todo-container {
+        display: flex;
+        align-items: flex-start;
+        background-color: #fff8dc;
+        border: 1px solid #e0e0e0;
+        padding: 8px 12px;
+        border-radius: 8px;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+        flex-grow: 1;
+        min-height: 32px;
+        transition: background-color 0.2s ease;
+    }
 
-.todo-container {
-    display: flex;
-    align-items: center;
-    background-color: #fff8dc;
-    border: 1px solid #e0e0e0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
-    transition: background-color 0.2s ease;
-    flex-grow: 1;
-}
+    .todo-container:hover {
+        background-color: #fef3c7;
+    }
 
-.todo-container:hover {
-    background-color: #fef3c7;
-}
+    .todo-date-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 15px;
+        min-width: 80px;
+        font-size: 0.9em;
+    }
 
-.todo-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
+    .todo-date-year {
+        font-weight: bold;
+        color: #bbb;
+        font-size: 0.9em;
+        margin-bottom: 3px;
+    }
 
-.todo-title {
-    font-weight: bold;
-    font-size: 1.1em;
-    color: #4b3b2b;
-}
+    .todo-date-month {
+        font-size: 1.1em;
+        color: #f59e0b;
+        margin-bottom: 2px;
+    }
 
-.todo-detail {
-    font-size: 0.9em;
-    color: #555;
-}
+    .todo-date-time {
+        font-size: 0.9em;
+        color: #777;
+    }
 
-.todo-date {
-    font-size: 0.8em;
-    color: #999;
-}
+    .todo-content {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex-grow: 1;
+    }
 
-.todo-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: 15px;
-}
+    .todo-title {
+        font-weight: bold;
+        font-size: 1.3em;
+        color: #4b3b2b;
+    }
 
-.edit-button,
-.delete-button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-}
+    .todo-detail {
+        font-size: 0.95em;
+        color: #555;
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
 
-.edit-button {
-    background-color: #4caf50;
-    color: white;
-}
+    .todo-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-left: 15px;
+        flex-shrink: 0;
+    }
 
-.delete-button {
-    background-color: #f44336;
-    color: white;
-}
+    .edit-button,
+    .delete-button {
+        padding: 4px 8px;
+        font-size: 0.85em;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
+    .edit-button {
+        background-color: #4caf50;
+        color: white;
+    }
 
-
+    .delete-button {
+        background-color: #f44336;
+        color: white;
+    }
 </style>
 
-{{-- <div class="container"> --}}
-    <!-- サイドバー -->
-    <div class="sidebar">
-        <div class="menu">
-            <div class="menu-section template-section">
-                <h3 class="section-title">テンプレート</h3>
-                <ul class="template-list" style="list-style:none; padding-left: 0;">
-                    <li><button class="template1-button" type="button">タスク一覧</button></li>
-                    <li><button class="template2-button" type="button">完了タスク一覧</button></li>
-                </ul>
-            </div>
-
-            <div class="menu-section genre-section">
-                <h3 class="section-title">作成ジャンル</h3>
-                <ul class="genre-list" style="list-style:none; padding-left: 0;">
-                    <li><button class="today-button">T O D A Y</button></li>
-                    <li><button class="study-button">勉　強</button></li>
-                    <li><button class="family-button">家　族</button></li>
-                    <li><button class="school-button">娯　楽</button></li>
-                    <li><button class="work-button">バ　イ　ト</button></li>
-                    <li><button class="others-button">そ　の　他</button></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- メインコンテンツ -->
-    <div class="main-content">
-        <!-- ToDoリスト表示エリア -->
-        <!-- ToDoリスト表示エリア -->
-<div class="todo-list">
-    <input type="checkbox" class="todo-checkbox">
-    <div class="todo-container">
-        <div class="todo-content">
-            <div class="todo-title">ひよこ開発団プロジェクト作成</div>
-            <div class="todo-detail">詳細内容がここに入ります</div>
-            <div class="todo-date">2025-05-22-23:00</div>
-        </div>
-        <div class="todo-actions">
-            <button class="edit-button">編集</button>
-            <button class="delete-button">削除</button>
-        </div>
+<div class="sidebar">
+    <div class="menu">
+        <h3 class="section-title">テンプレート</h3>
+        <ul style="list-style: none; padding-left: 0;">
+            <li><button class="template1-button">タスク一覧</button></li>
+            <li><button class="template2-button">完了タスク一覧</button></li>
+        </ul>
+        <h3 class="section-title">作成ジャンル</h3>
+        <ul style="list-style: none; padding-left: 0;">
+            <li><button class="today-button">T O D A Y</button></li>
+            <li><button class="study-button">勉　強</button></li>
+            <li><button class="family-button">家　族</button></li>
+            <li><button class="school-button">娯　楽</button></li>
+            <li><button class="work-button">バ　イ　ト</button></li>
+            <li><button class="others-button">そ　の　他</button></li>
+        </ul>
     </div>
 </div>
 
-
-        <!-- プラスボタン -->
-        <div class="add-todo">
-            <button class="add-button" type="button">＋</button>
+<div class="main-content">
+    @for ($i = 0; $i < 5; $i++)
+    <div class="todo-list">
+        <input type="checkbox" class="todo-checkbox">
+        <div class="todo-container">
+            <div class="todo-date-column">
+                <div class="todo-date-year">2025</div>
+                <div class="todo-date-month">05-23</div>
+                <div class="todo-date-time">21:00</div>
+            </div>
+            <div class="todo-content">
+                <div class="todo-title">会議資料の作成</div>
+                <div class="todo-detail">詳細が折り返されて表示されますが、行間や余白は控えめでコンパクトに収まります。</div>
+            </div>
+            <div class="todo-actions">
+                <button class="edit-button">編集</button>
+                <button class="delete-button">削除</button>
+            </div>
         </div>
     </div>
+    @endfor
 </div>
+
+<div class="add-todo">
+    <button class="add-button">＋</button>
+</div>
+
 @endsection
