@@ -40,3 +40,10 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+use App\Http\Controllers\TaskController;
+
+Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->name('tasks.done');
