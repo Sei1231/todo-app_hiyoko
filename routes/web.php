@@ -1,22 +1,19 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->name('tasks.done');
 
 Route::get('/firstpage', function () {
     return view('firstpage');
@@ -42,11 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Breezeなどのデフォルト認証を無効化するなら、以下をコメントアウト
+// require __DIR__.'/auth.php';
 
+// ✅ 自作のログイン・登録ルート
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('custom.register.form');
+Route::post('/register', [AuthController::class, 'register'])->name('custom.register');
 
-use App\Http\Controllers\TaskController;
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('custom.login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('custom.login');
 
-Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
-Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->name('tasks.done');
+Route::post('/logout', [AuthController::class, 'logout'])->name('custom.logout');
