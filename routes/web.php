@@ -50,3 +50,5 @@ Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth'])->n
 Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->middleware(['auth'])->name('tasks.done');
 Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware(['auth'])->name('tasks.edit');
 Route::put('/tasks/{id}', [TaskController::class, 'update'])->middleware(['auth'])->name('tasks.update');
+Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/tasks/genre/{genre}', [TaskController::class, 'filterByGenre'])->name('tasks.genre');

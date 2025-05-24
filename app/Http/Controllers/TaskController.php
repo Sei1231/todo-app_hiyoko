@@ -39,11 +39,19 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    public function edit($id)
-    {
-        $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task'));
-    }
+public function edit($id)
+{
+    $task = Task::findOrFail($id);
+    return view('tasks.edit', compact('task'));
+}
+
+    public function destroy($id)
+{
+    $task = Task::findOrFail($id);
+    $task->delete();
+    return redirect()->route('tasks.index');
+}
+
 
     public function update(Request $request, $id)
     {
@@ -58,4 +66,13 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index');
     }
+    public function filterByGenre($genre)
+{
+    $today = now()->toDateString();
+    $tasks = Task::where('genre', $genre)->whereNull('done_at')->orderBy('time')->get();
+    $tasks_done = Task::where('genre', $genre)->whereNotNull('done_at')->get();
+
+    return view('tasks.index', compact('today', 'tasks', 'tasks_done', 'genre'));
+}
+
 }
