@@ -50,6 +50,8 @@ require __DIR__.'/auth.php';
 
 use App\Http\Controllers\TaskController;
 
-Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
-Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->name('tasks.done');
+Route::get('/', [TaskController::class, 'index'])->middleware(['auth'])->name('tasks.index');
+Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth'])->name('tasks.store');
+Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->middleware(['auth'])->name('tasks.done');
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware(['auth'])->name('tasks.edit');
+Route::put('/tasks/{id}', [TaskController::class, 'update'])->middleware(['auth'])->name('tasks.update');

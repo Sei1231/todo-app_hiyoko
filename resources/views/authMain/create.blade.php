@@ -157,8 +157,9 @@ textarea {
 
     <h2 class="todo-header">タスク登録</h2>
 
-    <form action="#" method="POST" class="form-box">
-        @csrf
+<form action="{{ route('tasks.store') }}" method="POST" class="form-box">
+    @csrf
+
 
         <div class="form-group mb-3">
             <label for="title">タイトル <span style="color: red;">必須</span></label>
@@ -172,7 +173,7 @@ textarea {
 
         <div class="form-group mb-3">
             <label for="deadline">期限</label>
-            <input type="datetime-local" name="deadline" id="deadline" class="form-control" value="2025-05-25T17:00">
+            <input type="datetime-local" name="time" id="time" class="form-control" value="{{ now()->format('Y-m-d\TH:i') }}">
         </div>
 
         <div class="form-group mb-3">
