@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-<<<<<<< Updated upstream
 Route::get('/firstpage', function () {
     return view('firstpage');
 });
@@ -31,8 +30,6 @@ Route::get('/createMain', function () {
     return view('authMain.create');
 });
 
-=======
->>>>>>> Stashed changes
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
