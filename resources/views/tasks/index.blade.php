@@ -3,6 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDoリスト</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #fefefe;
+            margin: 40px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="date"] {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 6px 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            background-color: #fff8dc;
+            border: 1px solid #eee;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
     <h1>ToDoリスト</h1>
