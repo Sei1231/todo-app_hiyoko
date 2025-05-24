@@ -70,12 +70,16 @@
             <label for="genre">ジャンル</label>
             <select name="genre" id="genre">
                 <option value="">選択してください</option>
-                <option value="TODAY">TODAY</option>
+                {{-- <option value="TODAY">TODAY</option>
                 <option value="勉強">勉強</option>
                 <option value="家族">家族</option>
                 <option value="娯楽">娯楽</option>
                 <option value="バイト">バイト</option>
-                <option value="その他">その他</option>
+                <option value="その他">その他</option> --}}
+                `@foreach ($kinds as $kind )
+            <option value="{{ $kind->id }}">{{ $kind->name }}</option>
+
+                @endforeach
             </select>
         </div>
         <button type="submit">追加</button>
@@ -87,7 +91,8 @@
             <li>
                 {{ $task->title }}（期限：{{ $task->time }}）
                 @if ($task->genre)
-                    <span
+                    <span\
+                    \
                         style="margin-left: 10px; background-color: #eee; padding: 4px 8px; border-radius: 4px; font-size: 0.9em;">
                         ジャンル：{{ $task->genre }}
                     </span>

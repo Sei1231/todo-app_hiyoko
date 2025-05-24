@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\kind;
 
 class TaskController extends Controller
 {
@@ -12,7 +13,8 @@ class TaskController extends Controller
         $today = now()->toDateString();
         $tasks = Task::whereNull('done_at')->orderBy('time')->get();
         $tasks_done = Task::whereNotNull('done_at')->get();
-        return view('tasks.index', compact('today', 'tasks', 'tasks_done'));
+        $kinds = Kind::orderBy('id')->get();
+        return view('tasks.index', compact('today', 'tasks', 'tasks_done','kinds'));
     }
 
     public function store(Request $request)
