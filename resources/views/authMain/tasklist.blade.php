@@ -2,24 +2,6 @@
 @section('content')
 
 @include('layouts.sidebar')
-{{-- <div class="sidebar">
-    <div class="menu">
-        <h3 class="section-title">テンプレート</h3>
-        <ul style="list-style: none; padding-left: 0;">
-            <li><button class="template1-button">タスク一覧</button></li>
-            <li><button class="template2-button">完了タスク一覧</button></li>
-        </ul>
-        <h3 class="section-title">作成ジャンル</h3>
-        <ul style="list-style: none; padding-left: 0;">
-            <li><button class="today-button">T O D A Y</button></li>
-            <li><button class="study-button">勉　強</button></li>
-            <li><button class="family-button">家　族</button></li>
-            <li><button class="school-button">娯　楽</button></li>
-            <li><button class="work-button">バ　イ　ト</button></li>
-            <li><button class="others-button">そ　の　他</button></li>
-        </ul>
-    </div>
-</div> --}}
 
 <style>
     .todo-list {
@@ -153,5 +135,37 @@
 <div class="add-todo">
     <button class="add-button">＋</button>
 </div>
+<!-- 削除確認モーダル -->
+<div id="deleteModal" style="display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+    z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 50px 50px; border-radius: 10px; text-align: center;">
+        <p style="margin-bottom: 10px">本当に削除しますか？</p>
+        <button id="confirmDeleteBtn" style="background-color: red; color: white; padding: 8px 20px; margin-right: 10px; border-radius: 10%;">削除</button>
+        <button id="cancelDeleteBtn" style="background-color: gray; color: white; padding: 8px 20px; border-radius: 10%;">戻る</button>
+    </div>
+</div>
+<script>
+    let currentDeleteButton = null;
+
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            currentDeleteButton = e.target;
+            document.getElementById('deleteModal').style.display = 'flex';
+        });
+    });
+
+    document.getElementById('cancelDeleteBtn').addEventListener('click', () => {
+        document.getElementById('deleteModal').style.display = 'none';
+    });
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', () => {
+        // 削除処理の実行（仮にDOMから消す）
+        const todoItem = currentDeleteButton.closest('.todo-list');
+        todoItem.remove();
+
+        document.getElementById('deleteModal').style.display = 'none';
+    });
+</script>
 
 @endsection
