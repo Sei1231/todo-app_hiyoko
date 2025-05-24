@@ -29,6 +29,7 @@ class TaskController extends Controller
             'genre' => $request->genre,
             'user_id' => auth()->id(), // 👈これを必ず追加！
         ]);
+        return redirect()->route('tasks.index');
     }
 
     public function done($id)
