@@ -1,22 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
-
-
-<<<<<<< Updated upstream
 Route::get('/firstpage', function () {
     return view('firstpage');
 });
@@ -24,15 +17,15 @@ Route::get('/firstpage', function () {
 Route::get('/loginMain', function () {
     return view('authMain.login');
 });
+
 Route::get('/tasklistMain', function () {
     return view('authMain.tasklist');
 });
+
 Route::get('/createMain', function () {
     return view('authMain.create');
 });
 
-=======
->>>>>>> Stashed changes
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -44,9 +37,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-use App\Http\Controllers\TaskController;
 
 Route::get('/', [TaskController::class, 'index'])->middleware(['auth'])->name('tasks.index');
 Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth'])->name('tasks.store');
