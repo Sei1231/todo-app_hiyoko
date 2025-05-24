@@ -20,10 +20,15 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required',
             'time' => 'required|date',
+            'genre' => 'nullable|string',
         ]);
 
-        Task::create($request->only('title', 'time'));
-        return redirect()->route('tasks.index');
+        Task::create([
+            'title' => $request->title,
+            'time' => $request->time,
+            'genre' => $request->genre,
+            'user_id' => auth()->id(), // 👈これを必ず追加！
+        ]);
     }
 
     public function done($id)
@@ -32,5 +37,24 @@ class TaskController extends Controller
         $task->update(['done_at' => now()]);
         return redirect()->route('tasks.index');
     }
-}
 
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'time' => 'required|date',
+            'genre' => 'nullable|string',
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->update($request->only('title', 'time', 'genre'));
+
+        return redirect()->route('tasks.index');
+    }
+}
