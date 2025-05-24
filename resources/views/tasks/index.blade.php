@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>ToDoリスト</title>
-    <style>
+@section('content')
+<style>
         body {
             font-family: sans-serif;
             background-color: #fefefe;
@@ -54,9 +51,7 @@
             border-radius: 8px;
         }
     </style>
-</head>
 
-<body>
     <h1>ToDoリスト</h1>
     <p>今日の日付：{{ $today }}</p>
 
@@ -137,7 +132,5 @@
     @if (isset($genre))
         <h2>ジャンル: {{ $genre }}</h2>
     @endif
+@endsection
 
-</body>
-
-</html>
