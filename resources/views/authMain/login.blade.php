@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-
-<style>
-  html, body {
-      overflow: hidden;
-      height: 100%;
-  }
-</style>
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            height: 100%;
+        }
+    </style>
 
     {{-- <form method="POST" action="{{ route('login') }}">
         @csrf --}}
         {{-- <form class="min-h-screen flex items-center justify-center">
            --}}
-           {{-- <div class="h-screen overflow-hidden flex items-center justify-center"> --}}
+        {{-- <div class="h-screen overflow-hidden flex items-center justify-center"> --}}
         <div class="container">
             <!-- ログインフォーム -->
             <div class="form-section">
@@ -23,17 +23,16 @@
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email')" class="text-xl" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
+                            :value="old('email')" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" class="text-xl" />
-                        <x-text-input id="password" class="block mt-1 w-full"
-                                      type="password"
-                                      name="password"
-                                      required autocomplete="current-password" />
+                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                            autocomplete="current-password" />
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
@@ -41,20 +40,20 @@
                     <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox"
-                                   class="rounded border-gray-300 text-yellow-800 shadow-sm focus:ring-yellow-500"
-                                   name="remember">
+                                class="rounded border-gray-300 text-yellow-800 shadow-sm focus:ring-yellow-500"
+                                name="remember">
                             <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
                     <div class="flex flex-col items-center mt-4">
                         @if (Route::has('password.request'))
-
                         @endif
 
                         <x-primary-button class="ms-3 text-xl">
                             {{ __('Log in') }}
                         </x-primary-button>
+
                         {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                         href="{{ route('password.request') }}">
                          {{ __('Forgot your password?') }}
@@ -73,7 +72,7 @@
                     <div>
                         <x-input-label for="name" :value="__('Name')" class="text-xl" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                      :value="old('name')" required autofocus autocomplete="name" />
+                            :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
@@ -81,23 +80,23 @@
                     <div>
                         <x-input-label for="email" :value="__('Email')" class="text-xl" />
                         <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                      :value="old('email')" required autocomplete="username" />
+                            :value="old('email')" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
                     <div class="mt-4">
                         <x-input-label for="password" :value="__('Password')" class="text-xl" />
-                        <x-text-input id="password" class="block mt-1 w-full" type="password"
-                                      name="password" required autocomplete="new-password" />
+                        <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                            autocomplete="new-password" />
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
                         <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="text-xl" />
-                        <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                      type="password" name="password_confirmation" required autocomplete="new-password" />
+                        <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                            name="password_confirmation" required autocomplete="new-password" />
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
 
@@ -109,6 +108,4 @@
                 </form>
             </div>
         </div>
-
-
 @endsection

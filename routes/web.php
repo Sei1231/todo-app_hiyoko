@@ -11,9 +11,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [TaskController::class, 'index'])->name('tasks.index');
-Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->name('tasks.done');
+
 
 Route::get('/firstpage', function () {
     return view('firstpage');
@@ -50,3 +48,10 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('custom.log
 Route::post('/login', [AuthController::class, 'login'])->name('custom.login');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('custom.logout');
+Route::get('/', [TaskController::class, 'index'])->middleware(['auth'])->name('tasks.index');
+Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth'])->name('tasks.store');
+Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->middleware(['auth'])->name('tasks.done');
+Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware(['auth'])->name('tasks.edit');
+Route::put('/tasks/{id}', [TaskController::class, 'update'])->middleware(['auth'])->name('tasks.update');
+Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/tasks/genre/{genre}', [TaskController::class, 'filterByGenre'])->name('tasks.genre');
