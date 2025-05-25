@@ -8,16 +8,16 @@
         }
     </style>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-        {{-- <div class="min-h-screen flex items-center justify-center">
+    {{-- <form method="POST" action="{{ route('login') }}">
+        @csrf --}}
+        {{-- <form class="min-h-screen flex items-center justify-center">
            --}}
         {{-- <div class="h-screen overflow-hidden flex items-center justify-center"> --}}
         <div class="container">
             <!-- ログインフォーム -->
             <div class="form-section">
                 <h2 style="font-size: 2rem;">LOGIN</h2>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('custom.login') }}">
                     @csrf
 
                     <!-- Email Address -->
@@ -53,10 +53,11 @@
                         <x-primary-button class="ms-3 text-xl">
                             {{ __('Log in') }}
                         </x-primary-button>
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                            href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
+
+                        {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                        href="{{ route('password.request') }}">
+                         {{ __('Forgot your password?') }}
+                     </a> --}}
                     </div>
                 </form>
             </div>
@@ -64,7 +65,7 @@
             <!-- 新規登録フォーム -->
             <div class="form-section" style="background-color: #facc15;">
                 <h2 style="font-size: 2rem;">REGISTER</h2>
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('custom.register') }}">
                     @csrf
 
                     <!-- Name -->
@@ -107,5 +108,4 @@
                 </form>
             </div>
         </div>
-        </div>
-    @endsection
+@endsection
