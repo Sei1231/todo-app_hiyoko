@@ -11,7 +11,6 @@ class TaskController extends Controller
     // タスク一覧を表示（未完了・完了を分けて取得）
     public function index()
     {
-public function index()
 {
     $today = now()->toDateString();
 
