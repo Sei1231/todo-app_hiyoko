@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
-
-
 Route::get('/firstpage', function () {
     return view('firstpage');
 });
@@ -20,9 +17,11 @@ Route::get('/firstpage', function () {
 Route::get('/loginMain', function () {
     return view('authMain.login');
 });
+
 Route::get('/tasklistMain', function () {
     return view('authMain.tasklist');
 });
+
 Route::get('/createMain', function () {
     return view('authMain.create');
 });
@@ -40,7 +39,7 @@ Route::middleware('auth')->group(function () {
 // Breezeなどのデフォルト認証を無効化するなら、以下をコメントアウト
 // require __DIR__.'/auth.php';
 
-// ✅ 自作のログイン・登録ルート
+
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('custom.register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('custom.register');
 
