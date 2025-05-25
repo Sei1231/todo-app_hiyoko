@@ -150,7 +150,7 @@
                         ジャンル：{{ $task->genre }}
                     </span>
                 @endif
-                
+
                 <a href="{{ route('tasks.edit', $task->id) }}" class="edit-button"
                     >編集</a>
                 <form method="POST" action="{{ route('tasks.done', $task->id) }}" style="display:inline;">
@@ -184,7 +184,7 @@
     </ul>
 
     <h3>ジャンルで絞り込む</h3>
-    <ul>
+    {{-- <ul>
         <li><a href="{{ route('tasks.index') }}">すべて表示</a></li>
         <li><a href="{{ route('tasks.genre', 'TODAY') }}">TODAY</a></li>
         <li><a href="{{ route('tasks.genre', '勉強') }}">勉強</a></li>
@@ -192,6 +192,12 @@
         <li><a href="{{ route('tasks.genre', '娯楽') }}">娯楽</a></li>
         <li><a href="{{ route('tasks.genre', 'バイト') }}">バイト</a></li>
         <li><a href="{{ route('tasks.genre', 'その他') }}">その他</a></li>
+    </ul> --}}
+
+    <ul>
+        @foreach ($kinds as $kind )
+            <li value="{{ $kind->id }}">{{ $kind->color-code }}</li>
+        @endforeach
     </ul>
     @if (isset($genre))
         <h2>ジャンル: {{ $genre }}</h2>
