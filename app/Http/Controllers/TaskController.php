@@ -4,27 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\kind;
 
 class TaskController extends Controller
 {
     // タスク一覧を表示（未完了・完了を分けて取得）
     public function index()
     {
-        $today = now()->toDateString(); // 今日の日付を取得
+public function index()
+{
+    $today = now()->toDateString();
 
-        // 未完了のタスク（ログイン中のユーザー限定）
-        $tasks = Task::where('user_id', auth()->id())
-            ->whereNull('done_at')
-            ->orderBy('time')
-            ->get();
+    // 未完了のタスク（ログインユーザー限定）
+    $tasks = Task::where('user_id', auth()->id())
+        ->whereNull('done_at')
+        ->orderBy('time')
+        ->get();
 
-        // 完了済みのタスク
-        $tasks_done = Task::where('user_id', auth()->id())
-            ->whereNotNull('done_at')
-            ->get();
+    // 完了済みのタスク（ログインユーザー限定）
+    $tasks_done = Task::where('user_id', auth()->id())
+        ->whereNotNull('done_at')
+        ->get();
 
-        // ビューにデータを渡して表示（authMain/tasklist.blade.php）
-        return view('authMain.tasklist', compact('today', 'tasks', 'tasks_done'));
+    // タスクの種類も取得
+    $kinds = Kind::orderBy('id')->get();
+
+    // ビューにデータを渡す
+    return view('authMain.tasklist', compact('today', 'tasks', 'tasks_done', 'kinds'));
+}
+
     }
 
     // タスクの登録処理
