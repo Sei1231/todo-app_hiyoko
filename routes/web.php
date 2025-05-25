@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
 Route::get('/firstpage', function () {
     return view('firstpage');
 });
@@ -36,8 +36,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Breezeなどのデフォルト認証を無効化するなら、以下をコメントアウト
+// require __DIR__.'/auth.php';
 
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('custom.register.form');
+Route::post('/register', [AuthController::class, 'register'])->name('custom.register');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('custom.login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('custom.login');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('custom.logout');
 Route::get('/', [TaskController::class, 'index'])->middleware(['auth'])->name('tasks.index');
 Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth'])->name('tasks.store');
 Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->middleware(['auth'])->name('tasks.done');

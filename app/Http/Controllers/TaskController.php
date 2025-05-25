@@ -10,12 +10,14 @@ class TaskController extends Controller
 {
     public function index()
     {
+        
         $today = now()->toDateString();
         $tasks = Task::whereNull('done_at')->orderBy('time')->get();
         $tasks_done = Task::whereNotNull('done_at')->get();
         $kinds = Kind::orderBy('id')->get();
         return view('tasks.index', compact('today', 'tasks', 'tasks_done','kinds'));
     }
+
 
     public function store(Request $request)
     {
@@ -41,18 +43,18 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-public function edit($id)
-{
-    $task = Task::findOrFail($id);
-    return view('tasks.edit', compact('task'));
-}
+    public function edit($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.edit', compact('task'));
+    }
 
     public function destroy($id)
-{
-    $task = Task::findOrFail($id);
-    $task->delete();
-    return redirect()->route('tasks.index');
-}
+    {
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->route('tasks.index');
+    }
 
 
     public function update(Request $request, $id)
@@ -69,12 +71,19 @@ public function edit($id)
         return redirect()->route('tasks.index');
     }
     public function filterByGenre($genre)
-{
-    $today = now()->toDateString();
-    $tasks = Task::where('genre', $genre)->whereNull('done_at')->orderBy('time')->get();
-    $tasks_done = Task::where('genre', $genre)->whereNotNull('done_at')->get();
+    {
+        $today = now()->toDateString();
+        $tasks = Task::where('user_id', auth()->id()) // ← 忘れず追加！
+            ->where('genre', $genre)
+            ->whereNull('done_at')
+            ->orderBy('time')
+            ->get();
 
-    return view('tasks.index', compact('today', 'tasks', 'tasks_done', 'genre'));
-}
+        $tasks_done = Task::where('user_id', auth()->id()) // ← こちらも
+            ->where('genre', $genre)
+            ->whereNotNull('done_at')
+            ->get();
 
+        return view('tasks.index', compact('today', 'tasks', 'tasks_done', 'genre'));
+    }
 }

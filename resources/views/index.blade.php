@@ -16,6 +16,8 @@
         <button type="submit">追加</button>
     </form>
 
+    
+
     <h2>未完了のタスク</h2>
     <ul>
         @foreach ($tasks as $task)
