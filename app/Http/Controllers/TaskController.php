@@ -9,6 +9,7 @@ class TaskController extends Controller
 {
     public function index()
     {
+        
         $today = now()->toDateString();
         $tasks = Task::where('user_id', auth()->id()) // ← ここを追加！
             ->whereNull('done_at')
