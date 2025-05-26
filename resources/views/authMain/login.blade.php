@@ -1,19 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        html,
-        body {
-            overflow: hidden;
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/loginPage.css') }}">
+    
+    <div class="login-page">
 
-    {{-- <form method="POST" action="{{ route('login') }}">
-        @csrf --}}
-        {{-- <form class="min-h-screen flex items-center justify-center">
-           --}}
-        {{-- <div class="h-screen overflow-hidden flex items-center justify-center"> --}}
-        <div class="container">
+        <div class="container login-container">
             <!-- ログインフォーム -->
             <div class="form-section">
                 <h2 style="font-size: 2rem;">LOGIN</h2>
@@ -54,10 +45,6 @@
                             {{ __('Log in') }}
                         </x-primary-button>
 
-                        {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                        href="{{ route('password.request') }}">
-                         {{ __('Forgot your password?') }}
-                     </a> --}}
                     </div>
                 </form>
             </div>
@@ -108,4 +95,5 @@
                 </form>
             </div>
         </div>
+    </div>
 @endsection

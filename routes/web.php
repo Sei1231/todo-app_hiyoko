@@ -5,35 +5,10 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-| 各ページのURLと、それに対応する処理（コントローラーやビュー）を定義するファイル
-*/
 
-// 最初のページ（Welcomeなど）を表示
-
-Route::get('/firstpage', function () {
-    return view('firstpage');
+Route::get('/', function () {
+    return view('authMain.login'); // 初期画面は welcome.blade.php を表示
 });
-
-// 自作のログイン画面を表示
-Route::get('/loginMain', function () {
-    return view('authMain.login');
-});
-// ✅ /tasklistMain：タスク一覧ページを表示（TaskControllerを使ってタスクを渡す）
-Route::get('/tasklistMain', [TaskController::class, 'index'])->middleware('auth')->name('tasks.main');
-
-// ✅ タスク作成ページ（createフォーム）
-Route::get('/createMain', function () {
-    return view('authMain.create');
-});
-
-// ダッシュボードページ（ログイン後のみ表示）
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 // プロフィールの編集・更新・削除（ログインユーザーのみ）
 Route::middleware('auth')->group(function () {
@@ -48,17 +23,17 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('custom.register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('custom.register');
-
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('custom.login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('custom.login');
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('custom.logout');
 
-// ✅ タスク機能のルート群（全てログイン中のみアクセス可）
-Route::get('/', [TaskController::class, 'index'])->middleware(['auth'])->name('tasks.index'); // ホームでタスク一覧
-Route::post('/tasks', [TaskController::class, 'store'])->middleware(['auth'])->name('tasks.store'); // タスク追加
-Route::patch('/tasks/{id}/done', [TaskController::class, 'done'])->middleware(['auth'])->name('tasks.done'); // 完了チェック
-Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->middleware(['auth'])->name('tasks.edit'); // 編集画面表示
-Route::put('/tasks/{id}', [TaskController::class, 'update'])->middleware(['auth'])->name('tasks.update'); // 更新処理
-Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->middleware(['auth'])->name('tasks.destroy'); // 削除処理
-Route::get('/tasks/genre/{genre}', [TaskController::class, 'filterByGenre'])->middleware(['auth'])->name('tasks.genre'); // ジャンル別フィルター
+Route::middleware(['auth'])->prefix('tasks')->name('tasks.')->group(function () {
+    Route::get('/index', [TaskController::class, 'index'])->name('index');
+    Route::get('/create', [TaskController::class, 'create'])->name('create');
+    Route::post('/', [TaskController::class, 'store'])->name('store');
+    Route::patch('/{id}/done', [TaskController::class, 'done'])->name('done');
+    Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [TaskController::class, 'update'])->name('update');
+    Route::delete('/{id}', [TaskController::class, 'destroy'])->name('destroy');
+    Route::get('/genre/{genre}', [TaskController::class, 'filterByGenre'])->name('genre');
+});

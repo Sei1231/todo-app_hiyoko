@@ -10,28 +10,31 @@ class TaskController extends Controller
 {
     // タスク一覧を表示（未完了・完了を分けて取得）
     public function index()
+    { {
+            $today = now()->toDateString();
+
+            // 未完了のタスク（ログインユーザー限定）
+            $tasks = Task::where('user_id', auth()->id())
+                ->whereNull('done_at')
+                ->orderBy('time')
+                ->get();
+
+            // 完了済みのタスク（ログインユーザー限定）
+            $tasks_done = Task::where('user_id', auth()->id())
+                ->whereNotNull('done_at')
+                ->get();
+
+            // タスクの種類も取得
+            $kinds = Kind::orderBy('id')->get();
+
+            // ビューにデータを渡す
+            return view('tasks.index', compact('today', 'tasks', 'tasks_done', 'kinds'));
+        }
+    }
+
+    public function create()
     {
-{
-    $today = now()->toDateString();
-
-    // 未完了のタスク（ログインユーザー限定）
-    $tasks = Task::where('user_id', auth()->id())
-        ->whereNull('done_at')
-        ->orderBy('time')
-        ->get();
-
-    // 完了済みのタスク（ログインユーザー限定）
-    $tasks_done = Task::where('user_id', auth()->id())
-        ->whereNotNull('done_at')
-        ->get();
-
-    // タスクの種類も取得
-    $kinds = Kind::orderBy('id')->get();
-
-    // ビューにデータを渡す
-    return view('authMain.tasklist', compact('today', 'tasks', 'tasks_done', 'kinds'));
-}
-
+        return view('tasks.create'); // タスク登録画面を表示
     }
 
     // タスクの登録処理

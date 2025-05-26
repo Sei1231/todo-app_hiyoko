@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-@include('layouts.sidebar')
-
 <style>
     /* ここはそのままでOK（デザインCSS） */
     .todo-list { display: flex; align-items: center; gap: 12px; }

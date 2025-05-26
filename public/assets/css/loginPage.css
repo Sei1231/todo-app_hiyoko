@@ -1,0 +1,118 @@
+/* -------------------------------------------------------
+   firstpage.css — login page-only styles
+-------------------------------------------------------- */
+
+/* Base -------------------------------------------------- */
+.login-page {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fefefe;      /* unified background */
+}
+
+/* Layout ------------------------------------------------ */
+.login-page .login-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    margin: 50px auto;
+    border: 2px solid #f7d774;
+    border-radius: 10px;
+    background-color: #fffbe0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography ------------------------------------------- */
+.login-page h1,
+.login-page h2 {
+    color: #333;
+}
+
+.login-page .form-section h2 {
+    text-align: center;
+    color: #b68900;
+    margin-bottom: 30px;
+}
+
+/* Form Section ----------------------------------------- */
+.login-page .form-section {
+    flex: 1;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.login-page .form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Buttons ---------------------------------------------- */
+/* Yellow buttons used inside the main form section */
+.login-page .form-section button,
+.login-page .form-section x-primary-button {
+    background-color: #fcd34d;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-page .form-section button:hover,
+.login-page .form-section x-primary-button:hover {
+    background-color: #fbbf24;
+}
+
+/* Generic green buttons for the rest of the site */
+.login-page button {
+    padding: 6px 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-page button:hover {
+    background-color: #45a049;
+}
+
+/* Inputs ----------------------------------------------- */
+.login-page input[type="text"],
+.login-page input[type="date"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-page .form-group {
+    margin-bottom: 15px;
+}
+
+/* Links ------------------------------------------------- */
+.login-page a {
+    color: #9a6e00;
+    text-decoration: none;
+}
+
+.login-page a:hover {
+    text-decoration: underline;
+}
+
+/* Lists ------------------------------------------------- */
+.login-page ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.login-page li {
+    background-color: #fff8dc;
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 8px;
+}

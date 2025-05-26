@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>ToDoリスト</title>
-</head>
-<body>
+@section('title', 'ToDoリスト')
+@extends('layouts.app')
+
+@section('content')
     <h1>ToDoリスト</h1>
     <p>今日の日付：{{ $today }}</p>
 
@@ -16,7 +13,7 @@
         <button type="submit">追加</button>
     </form>
 
-    
+
 
     <h2>未完了のタスク</h2>
     <ul>
@@ -38,5 +35,4 @@
             <li>{{ $task->title }}（完了日：{{ $task->done_at }}）</li>
         @endforeach
     </ul>
-</body>
-</html>
+@endsection

@@ -37,7 +37,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // タスク一覧ページへリダイレクト
-        return redirect('/tasklistMain');
+        return redirect('tasks/index');
     }
 
     // ログイン画面を表示するメソッド
@@ -58,7 +58,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // タスク一覧ページへリダイレクト
-            return redirect('/tasklistMain');
+            return redirect('tasks/index');
         }
 
         // 認証失敗時、元の画面に戻りエラーメッセージを表示
