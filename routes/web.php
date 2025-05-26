@@ -44,7 +44,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('cust
 Route::post('/register', [AuthController::class, 'register'])->name('custom.register');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('custom.login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('custom.login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('custom.logout');
 Route::get('/', [TaskController::class, 'index'])->middleware(['auth'])->name('tasks.index');
