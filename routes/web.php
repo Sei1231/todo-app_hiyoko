@@ -30,10 +30,6 @@ Route::get('/createMain', function () {
     return view('authMain.create');
 });
 
-Route::get('/createMain', function () {
-    return view('authMain.create');
-});
-
 // ダッシュボードページ（ログイン後のみ表示）
 Route::get('/dashboard', function () {
     return view('dashboard');
