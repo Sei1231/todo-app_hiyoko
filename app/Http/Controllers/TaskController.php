@@ -29,15 +29,26 @@ class TaskController extends Controller
             $kinds = Kind::orderBy('id')->get();
 
             // ビューにデータを渡す
-            return view('tasks.index', compact('today', 'tasks', 'tasks_done', 'kinds'));
+            return view('tasks.index', compact('today', 'tasks', 'kinds'));
         }
+    }
+    public function showDoneTasks()
+    {
+        $today = now()->toDateString();
+
+        $tasks_done = Task::where('user_id', auth()->id())
+            ->whereNotNull('done_at')
+            ->orderByDesc('done_at')
+            ->get();
+
+        return view('tasks.done', compact('today', 'tasks_done'));
     }
 
 
     public function create()
     {
         $today = Carbon::now()->toDateString(); // 今日の日付を取得
-    return view('tasks.create', compact('today')); // ビューに渡す
+        return view('tasks.create', compact('today')); // ビューに渡す
     }
 
     // タスクの登録処理
@@ -68,7 +79,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->update(['done_at' => now()]);
-        return redirect()->route('tasks.main');
+        return redirect()->route('tasks.index');
     }
 
     // タスクの編集画面を表示
