@@ -26,6 +26,8 @@
                     <button type="submit">完了</button>
                 </form>
             </li>
+        @empty
+        <li>未完了のタスクはありません。</li>
         @endforeach
     </ul>
 
