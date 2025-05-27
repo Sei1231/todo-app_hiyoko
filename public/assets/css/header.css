@@ -1,4 +1,45 @@
-.icon-btn {
-    color: rgb(255, 186, 49);
-    font-size: 50px;
+:root {
+    --yellow: #f7d774;
+    --white: #ffffff;
+    --sidebar-width: 240px;
+    --header-height: 70px;
+    --red: #eb473d;
+    --purple: #5e16eb;
+    --indigo: #4318f0;
+    --blue: #46b2ff;
+    --pink: #f385c6;
+}
+/*************************
+           *  Top Header Bar
+           *************************/
+.todo-header {
+    height: var(--header-height);
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.todo-header h1 {
+    margin: 0;
+    font-family: 'Segoe UI Black', 'Arial Black', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 1.9rem;
+}
+
+.todo-header .user {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

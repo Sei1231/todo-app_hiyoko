@@ -42,7 +42,8 @@ class TaskController extends Controller
     {
         // バリデーション（入力チェック）
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|min:3',
+            'description' => 'required|max:255',
             'time' => 'required|date',
             'genre' => 'nullable|string',
         ]);
@@ -50,12 +51,13 @@ class TaskController extends Controller
         // タスクの新規作成（ログインユーザーに紐づけ）
         Task::create([
             'title' => $request->title,
+            'description' => $request->description,
             'time' => $request->time,
             'genre' => $request->genre,
             'user_id' => auth()->id(), // ← ここでユーザーと紐づける
         ]);
 
-        return redirect()->route('tasks.main'); // /tasklistMain に戻る
+        return redirect()->route('tasks.index'); // /tasklistMain に戻る
     }
 
     // タスクを完了にする処理
@@ -86,15 +88,16 @@ class TaskController extends Controller
     {
         // バリデーション
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|min:3',
+            'description' => 'required|max:255',
             'time' => 'required|date',
             'genre' => 'nullable|string',
         ]);
 
         $task = Task::findOrFail($id);
-        $task->update($request->only('title', 'time', 'genre'));
+        $task->update($request->only('title', 'description', 'time', 'genre'));
 
-        return redirect()->route('tasks.main');
+        return redirect()->route('tasks.index');
     }
 
     // ジャンルでタスクを絞り込む処理
