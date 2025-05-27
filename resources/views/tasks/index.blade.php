@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="wrapper">
-        
+
 
         <!-- Main Content Area -->
         <main class="content">
@@ -56,6 +56,5 @@
             </ul>
         </main>
     </div>
-
     <a href="{{ route('tasks.create') }}" class="fab"><i class="fa-solid fa-plus"></i></a>
 @endsection

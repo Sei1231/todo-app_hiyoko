@@ -37,3 +37,7 @@ Route::middleware(['auth'])->prefix('tasks')->name('tasks.')->group(function () 
     Route::delete('/{id}', [TaskController::class, 'destroy'])->name('destroy');
     Route::get('/genre/{genre}', [TaskController::class, 'filterByGenre'])->name('genre');
 });
+
+// 例：タスク作成ページへのルート
+Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+

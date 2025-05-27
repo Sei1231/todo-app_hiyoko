@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\kind;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -32,9 +33,11 @@ class TaskController extends Controller
         }
     }
 
+
     public function create()
     {
-        return view('tasks.create'); // タスク登録画面を表示
+        $today = Carbon::now()->toDateString(); // 今日の日付を取得
+    return view('tasks.create', compact('today')); // ビューに渡す
     }
 
     // タスクの登録処理
