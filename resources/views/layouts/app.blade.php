@@ -55,11 +55,15 @@
         @endauth
     </header>
 
-
-    <main>
-        @include('layouts.sidebar')
-        @yield('content')
-    </main>
+    <div>
+        @yield('guest')
+    </div>
+    @auth
+        <main>
+            @include('layouts.sidebar')
+            @yield('content')
+        </main>
+    @endauth
 
     <footer></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
