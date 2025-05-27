@@ -39,11 +39,11 @@
                 <i class="fa-regular fa-user" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false"
                     role="button"></i>
                 <ul class="dropdown-menu" aria-labelledby="userMenu">
-                    <li><a class="dropdown-item" href="">Profile</a></li>
+                    {{-- <li><a class="dropdown-item" href="">Profile</a></li>
                     <li><a class="dropdown-item" href="">Settings</a></li>
                     <li>
                         <hr class="dropdown-divider">
-                    </li>
+                    </li> --}}
                     <li>
                         <form method="POST" action="{{ route('custom.logout') }}">
                             @csrf
