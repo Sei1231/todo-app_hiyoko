@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/task-create.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/done.css') }}">
+
     @stack('styles')
 
     <!-- Scripts -->
