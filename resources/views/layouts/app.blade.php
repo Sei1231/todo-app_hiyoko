@@ -18,8 +18,12 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/firstpage.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/task-create.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/sidebar.css') }}">
     @stack('styles')
 
     <!-- Scripts -->
@@ -29,8 +33,8 @@
 <body class="font-sans antialiased">
 
     @auth
-        <header class="todo-header p-5" style="position: sticky; top: 0; z-index: 1000;">
-            <h1>TO&nbsp;DO&nbsp;LIST</h1>
+        <header class="todo-header p-5">
+            <h1><a href="{{ route('tasks.index') }}">TO&nbsp;DO&nbsp;LIST</a></h1>
             <div class="user dropdown">
                 <i class="fa-regular fa-user" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false"
                     role="button"></i>
@@ -52,7 +56,8 @@
     </header>
 
 
-    <main style="height: 100vh">
+    <main>
+        @include('layouts.sidebar')
         @yield('content')
     </main>
 
