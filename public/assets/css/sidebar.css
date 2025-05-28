@@ -52,6 +52,8 @@
 .btn-category {
     position: relative;
     padding-right: 36px;
+    padding-left: 33px;
+    text-align: center;
 }
 
 .btn-category i {
@@ -94,6 +96,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    cursor: pointer;
 }
 
 .settings i {
