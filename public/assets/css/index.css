@@ -60,7 +60,7 @@ ul.tasks li {
     padding: 18px 26px 14px 140px;
     /* leave space for date */
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     font-size: 14px;
     overflow: hidden;
     width: 100%;
