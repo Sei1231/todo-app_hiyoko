@@ -26,20 +26,19 @@
             <div class="task-form__group">
                 <label for="time" class="task-form__label">期限</label>
                 <input type="datetime-local" id="time" name="time" class="task-form__input"
-                    value="{{ old('due_at') }}" required>
+                    value="{{ old('time') }}" required>
             </div>
 
             {{-- ジャンル --}}
             <div class="task-form__group">
                 <label for="category_id" class="task-form__label">ジャンル</label>
-                <select name="genre" id="genre">
+                <select name="kind_id" id="kind_id" class="task-form__input">
                     <option value="">選択してください</option>
-                    <option value="TODAY">TODAY</option>
-                    <option value="勉強">勉強</option>
-                    <option value="家族">家族</option>
-                    <option value="娯楽">娯楽</option>
-                    <option value="バイト">バイト</option>
-                    <option value="その他">その他</option>
+                    @foreach ($kinds as $kind)
+                        <option value="{{ $kind->id }}" {{ old('kind_id') == $kind->id ? 'selected' : '' }}>
+                            {{ $kind->name }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
