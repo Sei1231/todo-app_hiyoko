@@ -40,7 +40,7 @@ ul li:hover {
     background-color: #dff6e2;
 }
 
-ul li::before {
+ ul li::before {
     content: '✓';
     color: #2ecc71;
     font-weight: bold;

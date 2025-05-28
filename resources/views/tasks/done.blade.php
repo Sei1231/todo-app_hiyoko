@@ -7,7 +7,7 @@
     <ul>
         @forelse ($tasks_done as $task)
             <li>
-                {{ $task->title }}（完了日：{{ \Carbon\Carbon::parse($task->done_at)->format('Y-m-d H:i') }})
+                {{ $task->title }}（完了日：{{ \Carbon\Carbon::parse($task->done_at)->format('Y-m-d H:i') }}
             </li>
         @empty
             <li class="no_done_task">完了タスクはないよ！</li>

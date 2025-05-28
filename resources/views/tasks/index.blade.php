@@ -13,15 +13,19 @@
         <!-- Main Content Area -->
         <main class="content">
             <ul class="tasks">
-                <li>
-                    <input type="checkbox" class="task-check" checked>
-                    <article class="task-card red">
-                        <div class="date">2025年<br>5月25日<br>17:00</div>
-                        <h3>ひよこ開発団プロジェクト完了</h3>
-                        <p>これはダミーのタスク説明テキストです。</p>
-                    </article>
-                </li>
-                <li>
+        @forelse ($tasks as $task)
+            <li>
+                {{ $task->title }}（期限：{{ $task->time }}）
+                <form method="POST" action="{{ route('tasks.done', $task->id) }}" style="display:inline;">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit">完了</button>
+                </form>
+            </li>
+        @empty
+        <li>未完了のタスクはありません。</li>
+        @endforelse
+                {{-- <li>
                     <input type="checkbox" class="task-check">
                     <article class="task-card purple">
                         <div class="date">2025年<br>5月26日<br>10:00</div>
@@ -52,9 +56,13 @@
                         <h3>家族ディナー</h3>
                         <p>レストラン予約を確認する。</p>
                     </article>
-                </li>
+                </li> --}}
             </ul>
         </main>
     </div>
     <a href="{{ route('tasks.create') }}" class="fab"><i class="fa-solid fa-plus"></i></a>
 @endsection
+
+
+
+
