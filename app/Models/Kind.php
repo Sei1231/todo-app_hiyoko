@@ -10,7 +10,7 @@ class Kind extends Model
     use HasFactory;
 
 
-    protected $fillable = ['name', 'color-code'];
+    protected $fillable = ['name', 'color_code'];
 
 }
 

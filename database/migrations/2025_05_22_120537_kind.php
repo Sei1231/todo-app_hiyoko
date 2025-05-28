@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('kinds', function (Blueprint $table) {
         $table->id();
         $table->string('name');
-        $table->string('color-code',6);
+        $table->string('color_code',6);
         });
         //
     }

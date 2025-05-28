@@ -48,18 +48,21 @@ class TaskController extends Controller
     public function create()
     {
         $today = Carbon::now()->toDateString(); // 今日の日付を取得
-        return view('tasks.create', compact('today')); // ビューに渡す
+        $kinds = kind::all();
+        return view('tasks.create', compact('today','kinds')); // ビューに渡す
     }
 
     // タスクの登録処理
     public function store(Request $request)
     {
+
+        // dd($request);
         // バリデーション（入力チェック）
         $request->validate([
             'title' => 'required|min:3',
             'description' => 'required|max:255',
             'time' => 'required|date',
-            'genre' => 'nullable|string',
+            'kind_id' => 'required|exists:kinds,id',
         ]);
 
         // タスクの新規作成（ログインユーザーに紐づけ）
@@ -67,7 +70,7 @@ class TaskController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'time' => $request->time,
-            'genre' => $request->genre,
+            'kind_id' => $request->kind_id,
             'user_id' => auth()->id(), // ← ここでユーザーと紐づける
         ]);
 

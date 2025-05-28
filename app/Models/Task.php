@@ -10,5 +10,11 @@ class Task extends Model
     use HasFactory;
 
 
-    protected $fillable = ['title', 'description', 'time', 'genre', 'done_at', 'user_id'];
+    protected $fillable = ['title', 'description', 'time', 'kind_id', 'done_at', 'user_id'];
+
+    public function kind()
+
+    {
+        return $this->belongsTo(kind::class);
+    }
 }

@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->date('time');           // 期限
             $table->date('done_at')->nullable(); // 完了日時（null = 未完了）
-            $table->string('genre')->nullable(); // 追加
-
+            $table->foreignId('kind_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
