@@ -10,6 +10,11 @@ Route::get('/', function () {
     return view('authMain.login'); // 初期画面は welcome.blade.php を表示
 });
 
+//最終的に消してください
+Route::get('/editPage', function () {
+    return view('tasks.edit'); // 初期画面は welcome.blade.php を表示
+});
+
 // プロフィールの編集・更新・削除（ログインユーザーのみ）
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

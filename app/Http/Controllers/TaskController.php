@@ -97,7 +97,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('tasks.main');
+        return redirect()->route('tasks.index');
     }
 
     // タスクの更新処理（編集画面から）
