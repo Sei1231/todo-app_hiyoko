@@ -12,8 +12,7 @@
                 {{ $kind->name }}
             </a>
         @endforeach
+
+        <div class="settings"><i class="fa-solid fa-gear"></i>設定/テーマ変更</div>
     </div>
-
-
-    <div class="settings"><i class="fa-solid fa-gear"></i>設定/テーマ変更</div>
 </aside>
