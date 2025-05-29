@@ -33,6 +33,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('custom.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('custom.logout');
 
 Route::middleware(['auth'])->prefix('tasks')->name('tasks.')->group(function () {
+
     Route::get('/index', [TaskController::class, 'index'])->name('index');
     Route::get('/create', [TaskController::class, 'create'])->name('create');
     Route::post('/', [TaskController::class, 'store'])->name('store');
@@ -43,8 +44,9 @@ Route::middleware(['auth'])->prefix('tasks')->name('tasks.')->group(function () 
     Route::get('/genre/{genre}', [TaskController::class, 'filterByGenre'])->name('genre');
     Route::get('/done', [TaskController::class, 'showDoneTasks'])->middleware('auth')->name('doneList');
 
+    Route::get('/kind/{id}', [TaskController::class, 'filterByKind'])->name('filterByKind');
+
 });
 
 // 例：タスク作成ページへのルート
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-

@@ -12,6 +12,12 @@
 
         <!-- Main Content Area -->
         <main class="content">
+            @if (isset($selectedKind))
+                <h2 class="mt-4 mb-3 text-center">
+                    「{{ $selectedKind->name }}」のタスク一覧
+                </h2>
+            @endif
+
             <ul class="tasks">
                 @forelse ($tasks as $task)
                     <li>

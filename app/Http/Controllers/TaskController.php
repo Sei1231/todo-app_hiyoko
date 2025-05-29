@@ -49,8 +49,27 @@ class TaskController extends Controller
     {
         $today = Carbon::now()->toDateString(); // 今日の日付を取得
         $kinds = kind::all();
-        return view('tasks.create', compact('today','kinds')); // ビューに渡す
+        return view('tasks.create', compact('today', 'kinds')); // ビューに渡す
     }
+
+
+    public function filterByKind($id)
+    {
+        $today = now()->toDateString();
+
+        $selectedKind = \App\Models\Kind::findOrFail($id);
+
+        $tasks = \App\Models\Task::where('user_id', auth()->id())
+            ->where('kind_id', $id)
+            ->whereNull('done_at')
+            ->orderBy('time')
+            ->get();
+
+        $kinds = \App\Models\Kind::all();
+
+        return view('tasks.index', compact('today', 'tasks', 'kinds', 'selectedKind'));
+    }
+
 
     // タスクの登録処理
     public function store(Request $request)
