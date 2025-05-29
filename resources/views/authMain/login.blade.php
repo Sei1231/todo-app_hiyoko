@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.guest')
+@section('guest')
     <link rel="stylesheet" href="{{ asset('assets/css/loginPage.css') }}">
 
     <div class="login-page">
