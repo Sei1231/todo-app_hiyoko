@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('authMain.login'); // 初期画面は welcome.blade.php を表示
+    return auth()->check() ? redirect()->route('tasks.index') : view('authMain.login');
 });
 
 //最終的に消してください

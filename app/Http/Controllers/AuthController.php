@@ -43,7 +43,7 @@ class AuthController extends Controller
     // ログイン画面を表示するメソッド
     public function showLoginForm()
     {
-        return view('authMain.login'); // ログインフォームのビューを表示
+        return auth()->check() ? redirect()->route('tasks.index') : view('authMain.login');
     }
 
     // ログイン処理
