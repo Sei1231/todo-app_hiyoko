@@ -5,8 +5,9 @@
     <div class="task-form">
         <h2 class="task-form__heading">タスク編集</h2>
 
-        <form action="{{ route('tasks.store') }}" method="POST" class="task-form__body">
+        <form action="{{ route('tasks.update',$task->id) }}" method="POST" class="task-form__body">
             @csrf
+            @method('PUT')
 
             {{-- タイトル --}}
             <div class="task-form__group">
@@ -32,15 +33,16 @@
             {{-- ジャンル --}}
             <div class="task-form__group">
                 <label for="category_id" class="task-form__label">ジャンル</label>
-                <select name="genre" id="genre">
+                <select name="kind_id" id="kind_id" class="task-form__input">
                     <option value="">選択してください</option>
-                    <option value="TODAY">TODAY</option>
-                    <option value="勉強">勉強</option>
-                    <option value="家族">家族</option>
-                    <option value="娯楽">娯楽</option>
-                    <option value="バイト">バイト</option>
-                    <option value="その他">その他</option>
+                    @foreach ($kinds as $kind)
+                        <option value="{{ $kind->id }}"
+                            {{ old('kind_id', $task->kind_id) == $kind->id ? 'selected' : '' }}>
+                            {{ $kind->name }}
+                        </option>
+                    @endforeach
                 </select>
+
             </div>
 
             {{-- 送信 --}}
