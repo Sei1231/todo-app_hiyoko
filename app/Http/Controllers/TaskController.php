@@ -108,7 +108,8 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task')); // ← これはそのままでOK（editページ用）
+        $kinds = Kind::all();
+        return view('tasks.edit', compact('task','kinds')); // ← これはそのままでOK（editページ用）
     }
 
     // タスクの削除処理
@@ -127,11 +128,11 @@ class TaskController extends Controller
             'title' => 'required|min:3',
             'description' => 'required|max:255',
             'time' => 'required|date',
-            'genre' => 'nullable|string',
+            'kind_id' => 'required|exists:kinds,id',
         ]);
 
         $task = Task::findOrFail($id);
-        $task->update($request->only('title', 'description', 'time', 'genre'));
+        $task->update($request->only('title', 'description', 'time', 'kind_id'));
 
         return redirect()->route('tasks.index');
     }
