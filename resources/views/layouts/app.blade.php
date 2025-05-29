@@ -62,7 +62,7 @@
     </div>
     @auth
         <main>
-            @include('layouts.sidebar')
+            @include('layouts.sidebar',['kinds' => \App\Models\kind::all()])
             @yield('content')
         </main>
     @endauth

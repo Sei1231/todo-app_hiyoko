@@ -43,9 +43,8 @@ Route::middleware(['auth'])->prefix('tasks')->name('tasks.')->group(function () 
     Route::delete('/{id}', [TaskController::class, 'destroy'])->name('destroy');
     Route::get('/genre/{genre}', [TaskController::class, 'filterByGenre'])->name('genre');
     Route::get('/done', [TaskController::class, 'showDoneTasks'])->middleware('auth')->name('doneList');
-
+    Route::patch('/{id}/undo', [TaskController::class, 'undo'])->name('undo');
     Route::get('/kind/{id}', [TaskController::class, 'filterByKind'])->name('filterByKind');
-
 });
 
 // 例：タスク作成ページへのルート

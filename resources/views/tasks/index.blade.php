@@ -12,15 +12,9 @@
 
         <!-- Main Content Area -->
         <main class="content">
-            @if (isset($selectedKind))
-                <h2 class="mt-4 mb-3 text-center">
-                    「{{ $selectedKind->name }}」のタスク一覧
-                </h2>
-            @endif
-
             <ul class="tasks">
                 @forelse ($tasks as $task)
-                    <li>
+                    <li style="background-color: {{ $task->kind->color_code }}">
                         {{ $task->title }}（期限：{{ $task->time }}）
                         <form method="POST" action="{{ route('tasks.done', $task->id) }}" style="display:inline;">
                             @csrf
@@ -32,7 +26,7 @@
                             <i class="fa-solid fa-pen-to-square btn btn-warning"></i>
                         </a>
 
-                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST"">
+                        <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit" onclick="return confirm('本当に削除しますか？')">

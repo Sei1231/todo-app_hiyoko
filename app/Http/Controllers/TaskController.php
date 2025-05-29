@@ -104,6 +104,13 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
+    public function undo($id)
+    {
+                $task = Task::findOrFail($id);
+        $task->update(['done_at' => NULL]);
+        return redirect()->route('tasks.doneList');
+    }
+
     // タスクの編集画面を表示
     public function edit($id)
     {
