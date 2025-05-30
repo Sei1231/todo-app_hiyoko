@@ -36,7 +36,7 @@
 
     @auth
         <header class="todo-header p-5">
-            <h1><a href="{{ route('tasks.index') }}">TO&nbsp;DO&nbsp;LIST</a></h1>
+            <h1><a class="header-title{{ route('tasks.index') }}">TO&nbsp;DO&nbsp;LIST</a></h1>
             <div class="user dropdown">
                 <i class="fa-regular fa-user" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false"
                     role="button"></i>

@@ -1,7 +1,7 @@
 <!-- Sidebar -->
     <div class="sidebar">
 
-        <h1>{{ optional(auth()->user())->name }} さんのTO&nbsp;DO&nbsp;リスト</h1>
+        <h1>{{ optional(auth()->user())->name }} さんの<hr>TO&nbsp;DO&nbsp;リスト</h1>
         <button class="btn btn-template" onclick="location.href='{{ route('tasks.index') }}'">タスク一覧</button>
         <button class="btn btn-done" onclick="location.href='{{ route('tasks.doneList') }}'">完了タスク一覧</button>
 

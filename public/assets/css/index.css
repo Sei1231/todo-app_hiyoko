@@ -28,8 +28,8 @@ ul.tasks {
 /* Each list item wraps the checkbox + task card */
 ul.tasks li {
     display: flex;
-    align-items: flex-start;
-    gap: 18px;
+    /* align-items: flex-start;
+    gap: 18px; */
 }
 
 /* Pretty checkbox */
@@ -114,8 +114,8 @@ ul.tasks li {
            *************************/
 .fab {
     position: fixed;
-    right: 40px;
-    bottom: 120px;
+    right: 50px;
+    bottom: 40px;
     width: 104px;
     height: 104px;
     background: #19c540;
@@ -145,4 +145,12 @@ ul.tasks li {
     .todo-header {
         padding: 0 20px;
     }
+}
+
+.logos{
+    display: flex;
+}
+
+.logo-edit{
+    margin-right: 10px;
 }

@@ -22,6 +22,7 @@
                             <button type="submit">完了</button>
                         </form>
 
+                        <div class="logos">
                         <a href="{{ route('tasks.edit', $task->id) }}">
                             <i class="fa-solid fa-pen-to-square btn btn-warning"></i>
                         </a>
@@ -33,6 +34,7 @@
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </form>
+                        </div>
                     </li>
                 @empty
                     <li>未完了のタスクはありません。</li>

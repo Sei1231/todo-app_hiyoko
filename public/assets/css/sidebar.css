@@ -4,7 +4,7 @@
 .sidebar {
     width: var(--sidebar-width);
     background: var(--yellow);
-    padding: 40px 14px;
+    padding: 24px 14px;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -114,4 +114,5 @@
     color: #fff;
     margin-bottom: 10px;
     text-decoration: none;
+    font-size: 20px;
 }
