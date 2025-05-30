@@ -58,12 +58,7 @@ ul li:hover {
 a {
     display: block;
     text-align: center;
-    margin: 30px auto 60px;
     font-size: 1rem;
     color: #3498db;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
